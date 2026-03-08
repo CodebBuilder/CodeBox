@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Textures</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <link rel="stylesheet" href="TexturesStyle.css">
+</head>
+<body>
+
+<div class="viewport-container"><div id="viewer"></div></div>
+
+<aside class="sidebar">
+    <div class="sidebar-section">
+        <h2 style="margin: 0 0 15px 0; color: var(--accent); font-size: 1.2rem;">Textures</h2>
+        <input type="text" id="assetName" placeholder="Name">
+        <input type="text" id="catInput" placeholder="Category" list="existingCats">
+        <datalist id="existingCats"></datalist>
+        <button class="btn" onclick="document.getElementById('fileIn').click()">UPLOAD</button>
+        <input type="file" id="fileIn" accept="image/*" hidden>
+    </div>
+
+    <div class="button-row">
+        <button class="btn btn-sec" onclick="exportLibrary()">Backup (.json)</button>
+        <button class="btn btn-sec" onclick="document.getElementById('restoreIn').click()">Restore (.json)</button>
+        <button class="btn btn-sec" onclick="clearLibrary()" style="color:#ff4444">Delete All</button>
+        <input type="file" id="restoreIn" accept=".json" hidden onchange="importLibrary(event)">
+    </div>
+
+    <div class="search-area">
+        <select id="viewFilter" onchange="refreshLibrary()"><option value="All">All Categories</option></select>
+        <input type="text" id="nameSearch" placeholder="Search..." oninput="refreshLibrary()" style="margin-top:10px;">
+    </div>
+
+    <div id="library"></div>
+</aside>
+
+<div id="pureViewOverlay"><img id="pureImage" src=""></div>
+
+<div class="viewport-controls">
+    <button class="btn btn-sec" onclick="closePure()">3D VIEW</button>
+    <h4></h4>
+    <button class="btn btn-sec" onclick="openPure()" id="resBtn">HI-RES</button>
+    <h6></h6>
+    <label for="">3D Sphere Resolution</label>
+    <input type="range" id="uvScale" min="1" max="10" step="1" value="1" oninput="updateUV(this.value)" style="margin-top:10px;">
+</div>
+
+<script src="TexturesFileSaving.js"></script>
+</body>
+</html>

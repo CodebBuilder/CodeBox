@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My 3D Assets</title>
+    <link rel="stylesheet" href="3DAssetsStyle.css">
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>3D Assets</h2>
+    
+    <div class="input-group">
+        <label>Object Name</label>
+        <input type="text" id="assetLabel" placeholder="Name your Object">
+    </div>
+
+    <div class="input-group">
+        <label>Object Color</label>
+        <input type="color" id="assetColor" value="#0078d4">
+    </div>
+
+    <div class="input-group">
+        <label>Object Link</label>
+        <input type="file" id="fileInput" accept=".obj,.glb,.gltf,.fbx" onchange="updateFileUI()">
+        <label for="fileInput" class="file-label" id="file-drop-zone">
+            <span id="file-text">Browse or Drop 3D File...</span>
+        </label>
+    </div>
+
+    <div class="btn-row">
+    <button class="primary-btn" onclick="saveToVault()">Store Asset</button>
+    <button class="secondary-btn" onclick="toggleWireframe()">Wireframe</button>
+</div>
+
+<div class="btn-row" style="margin-top: 10px;">
+    <button class="secondary-btn" onclick="exportBackup()">Backup</button>
+    <button class="secondary-btn" onclick="importBackup()">Restore</button>
+    <button class="secondary-btn" style="background: rgba(255, 50, 50, 0.2);" onclick="clearAllAssets()">Clear All</button>
+</div>
+
+<hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 25px 0;">
+
+    <input type="text" id="searchBar" placeholder="Search" onkeyup="renderDashboard()">
+
+    <div id="assetList"></div>
+</div>
+
+
+
+<div id="viewer">
+    <div id="loading">Processing</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fflate@0.7.4/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="3DAssetFileSaving.js"></script>
+
+</body>
+</html>
